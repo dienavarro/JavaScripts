@@ -1,0 +1,169 @@
+:root{
+    --background: #111010;
+    --primary-color: #1C1D20;
+    --secondary-color: #4A4D57;
+    --accent-color: #ff9100;
+    --text-color: #F9F9F9;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    color: var(--text-color);
+    scroll-behavior: smooth;
+  }
+body{
+    min-height: 100vh;
+    padding: 10px;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor {
+    width: 400px;
+    max-width: 90%;
+    padding: 20px;
+    background: linear-gradient(75deg, #fc0000, #1d0000); 
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 1px 5px rgba(0, 0, 0, 0.5); 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+}
+h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent-color);
+    letter-spacing: 4px;
+}
+.wrapper{
+    width: 700px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#nuevaTarea {
+    padding: 15px 20px;
+    width: 100%;
+    background: none;
+    border: 3px solid var(--secondary-color);
+    border-radius: 30px;
+    font: inherit;
+    color: var(--text-color);
+    caret-color: var(--accent-color);
+    transition: border-color 0.3s;
+}
+#nuevaTarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+.todo {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+.todo .todo-text {
+    max-width: 90%;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 10px 0;
+    flex-grow: 1; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.delete-button{
+    padding: 3px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    cursor: pointer;
+}
+.delete-button svg{
+    transition: 200ms ease;
+}
+.delete-button:hover svg{
+    fill: #ff0033;
+    transform: scale(1.2);
+}
+.custom-checkbox{
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: 200ms ease;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked ~ .custom-checkbox{
+    background-color: var(--accent-color);
+}
+input[type="checkbox"]:checked ~ .custom-checkbox svg{
+    fill: var(--primary-color);
+}
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+input[type="checkbox"]{
+    display: none;
+}
+@media(max-width: 500px){
+    html{
+        font-size: 12pt;
+    }
+    h1{
+        margin-top: 10px;
+        font-size: 10vw;
+    }
+    .wrapper {
+        width: 90%;
+    }
+}
+#borrarTodo {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    font-size: larger;
+    padding: 15px;
+    border: 3px solid var(--accent-color);
+    border-radius: 30px;
+    min-width: 150px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+#borrarTodo:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+#borrarTodo:disabled {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+

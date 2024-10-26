@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso JavaScript CoderHouse - Proyecto Final</title>
+    <title>Diego Navarro</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h2>Proyecto final - primer pre-entrega</h2>
-    <p>Diego Eduardo Navarro Tuero</p>
+    <div class="contenedor">
+        <h1>TODO-LIST</h1>
+        <div class="wrapper">
+            <input type="text" id="nuevaTarea" placeholder="Escribir tarea + Enter" autocomplete="off">
+            <h2>Tareas Pendientes</h2>
+                <ul id="listaDeTareas"></ul>
+            
+            <h2>Tareas Finalizadas</h2>
+                <ul id="tareasFinalizadas"></ul>
+                
+                <button id="borrarTodo">Borrar Todo</button>
+            </div>
+        </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
