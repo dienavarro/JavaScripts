@@ -128,7 +128,7 @@ input[type="checkbox"]:checked ~ .todo-text{
 input[type="checkbox"]{
     display: none;
 }
-@media (max-width: 300px) {
+@media (max-width: 600px) {
     html {
         font-size: 14px;
     }
