@@ -16,7 +16,7 @@ html{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     color: var(--text-color);
-    scroll-behavior: smooth;
+    /*scroll-behavior: smooth;*/
 }
 
 body {
@@ -168,7 +168,7 @@ input[type="checkbox"]{
     background-color: var(--secondary-color);
     cursor: not-allowed;
 }
-@media (max-width: 280px) {
+@media (max-width: 260px) {
     html {
         font-size: 14px;
     }
