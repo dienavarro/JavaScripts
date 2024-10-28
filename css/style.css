@@ -5,46 +5,51 @@
     --accent-color: #ff9100;
     --text-color: #F9F9F9;
 }
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     color: var(--text-color);
     scroll-behavior: smooth;
-  }
-body{
+}
+
+body {
     min-height: 100vh;
-    padding: 10px;
     background-color: var(--background);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 0;
 }
+
 .contenedor {
-    width: 500px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 768px;
+    height: 100vh;
     padding: 20px;
-    background: linear-gradient(45deg, #fc0000, #1d0000); 
+    background: linear-gradient(45deg, #fc0000, #1d0000);
     border-radius: 25px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 1px 5px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 1px 5px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     gap: 15px;
-    overflow: hidden;
+    overflow-y: auto;
 }
-h1{
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+h1 {
+    margin: 10px 0;
     font-size: 3rem;
     font-weight: 800;
     text-transform: uppercase;
     text-align: center;
     color: var(--accent-color);
-    letter-spacing: 6px;
+    letter-spacing: 4px;
 }
 .wrapper{
     width: 700px;
@@ -53,6 +58,7 @@ h1{
     flex-direction: column;
     gap: 15px;
 }
+
 #nuevaTarea {
     padding: 15px 20px;
     width: 100%;
@@ -64,10 +70,12 @@ h1{
     caret-color: var(--accent-color);
     transition: border-color 0.3s;
 }
+
 #nuevaTarea:focus {
     outline: none;
     border-color: var(--accent-color);
 }
+
 .todo {
     margin-bottom: 10px;
     padding: 10px 20px;
@@ -78,28 +86,32 @@ h1{
     gap: 10px;
     position: relative;
 }
+
 .todo .todo-text {
     max-width: 90%;
     word-wrap: break-word;
     white-space: normal;
     padding: 10px 0;
-    flex-grow: 1; 
+    flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.delete-button{
+
+.delete-button {
     padding: 3px;
     background: none;
     border: none;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-.delete-button svg{
+
+.delete-button svg {
     transition: 200ms ease;
 }
-.delete-button:hover svg{
+
+.delete-button:hover svg {
     fill: #ff0033;
     transform: scale(1.2);
 }
@@ -128,25 +140,7 @@ input[type="checkbox"]:checked ~ .todo-text{
 input[type="checkbox"]{
     display: none;
 }
-@media (max-width: 600px) {
-    html {
-        font-size: 14px;
-    }
-    h1 {
-        font-size: 8vw;
-    }
-    .todo {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .todo-text {
-        width: 90%;
-        margin-bottom: 5px;
-    }
-    #nuevaTarea {
-        font-size: 1rem;
-    }
-}
+
 #borrarTodo {
     background-color: var(--primary-color);
     color: var(--accent-color);
@@ -163,14 +157,35 @@ input[type="checkbox"]{
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
+
 #borrarTodo:hover {
     background-color: var(--accent-color);
     color: var(--primary-color);
     transform: scale(1.05);
 }
+
 #borrarTodo:disabled {
     background-color: var(--secondary-color);
     cursor: not-allowed;
+}
+@media (max-width: 280px) {
+    html {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 8vw;
+    }
+
+    .todo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .todo-text {
+        width: 90%;
+        margin-bottom: 5px;
+    }
 }
 
 
