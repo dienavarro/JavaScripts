@@ -1,0 +1,27 @@
+[
+    {
+        "id":1,
+        "text": "Lavar el auto",
+        "check": false
+    },
+    {
+        "id":2,
+        "text": "Comprar verdura",
+        "check": false
+    },
+    {
+        "id":3,
+        "text": "Comprar entradas cine",
+        "check": false
+    },
+    {
+        "id":4,
+        "text": "Hacer final coder-house",
+        "check": false
+    },
+    {
+        "id":5,
+        "text": "Revisar el mail",
+        "check": false
+    }
+]

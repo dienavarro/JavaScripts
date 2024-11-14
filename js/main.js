@@ -1,12 +1,20 @@
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 let contador = parseInt(localStorage.getItem("contador")) || 1;
 
+fetch('./tareasApi.json')
+.then(Response=>Response.json())
+.then(data =>console.log(data));
+
 //FUNCION PARA AGREGAR NUEVAS TAREAS
 function agregarTarea() {
     const inputTarea = document.getElementById("nuevaTarea").value.trim();
 
     if (inputTarea === "") {
-        alert("No puedes agregar una tarea VACÍA.");
+        Toastify({
+            text: "No puedes agregar una tarea VACÍA!",
+            backgroundColor: "linear-gradient(90deg, rgba(47,0,0,1) 0%, rgba(121,9,9,1) 35%, rgba(214,71,5,1) 100%)" ,
+            duration: 2000
+            }).showToast();
         return;
     }
 
@@ -20,6 +28,24 @@ function agregarTarea() {
     guardarTareas();
     actualizarListaDeTareas();
     document.getElementById("nuevaTarea").value = "";
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        background: "grey",
+        color:"white",
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Tarea agregada correctamente!"
+      });
 }
 
 //FUNCION PARA ACTUALIZAR AMBAS LISTAS
@@ -110,24 +136,98 @@ function moverTarea(id) {
 
 //FUNCION PARA BORRAR UNA TAREA ESPECIFICA
 function borrarTarea(id) {
-    const confirmacion = confirm("¿Estás seguro de eliminar esta tarea?");
-    if (confirmacion) {
+    // const confirmacion = confirm("¿Estás seguro de eliminar esta tarea?");
+    // if (confirmacion) {
+    //     tareas = tareas.filter(tarea => tarea.id !== id);
+    //     guardarTareas();
+    //     actualizarListaDeTareas();
+    // }
+    /////////////////////////////revisar como hacer esto!
+    const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+        });
+
+    swalWithBootstrapButtons.fire({
+        title: "Estas seguro?",
+        text: "Si borras esta tarea no la podras recuperar",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "si, borrala!",
+        cancelButtonText: "No, cancela!",
+        reverseButtons: true
+        }).then((result) => {
+    if (result.isConfirmed) {
         tareas = tareas.filter(tarea => tarea.id !== id);
         guardarTareas();
         actualizarListaDeTareas();
+        swalWithBootstrapButtons.fire({
+        title: "Borrado!",
+        text: "Su tarea fue borrada!",
+        icon: "success"
+        });
+    } else if (
+        result.dismiss === Swal.DismissReason.cancel
+    ) {
+        swalWithBootstrapButtons.fire({
+        title: "Cancelled",
+        text: "Your imaginary file is safe :)",
+        icon: "error"
+        });
     }
+    });
 }
 
 //FUNCION PARA BORRAR TODO
 function borrarTodo() {
-    const confirmacion = confirm("¿Estás seguro de eliminar todas las tareas?");
-    if (confirmacion) {
-        tareas = [];
-        contador = 1;
-        localStorage.removeItem("tareas");
-        localStorage.removeItem("contador");
-        actualizarListaDeTareas();
-    }
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Estas seguro?",
+        text: "Si borras esta tarea no la podras recuperar",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "si, borrala!",
+        cancelButtonText: "No, cancela!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+            tareas = [];
+            contador = 1;
+            localStorage.removeItem("tareas");
+            localStorage.removeItem("contador");
+            actualizarListaDeTareas();
+          swalWithBootstrapButtons.fire({
+            title: "Borrado!",
+            text: "Su tarea fue borrada!",
+            icon: "success"
+          });
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: "Su archivo NO fue borrado",
+            icon: "error"
+          });
+        }
+      });
+    // const confirmacion = confirm("¿Estás seguro de eliminar todas las tareas?");
+    // if (confirmacion) {
+    //     tareas = [];
+    //     contador = 1;
+    //     localStorage.removeItem("tareas");
+    //     localStorage.removeItem("contador");
+    //     actualizarListaDeTareas();
+    // }
 }
 
 //FUNCION PARA GUARDAR EN LOCAL STORAGE
