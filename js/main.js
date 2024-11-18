@@ -1,9 +1,25 @@
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 let contador = parseInt(localStorage.getItem("contador")) || 1;
 
-fetch('./tareasApi.json')
-.then(Response=>Response.json())
-.then(data =>console.log(data));
+fetch('./tareasApi.json') // Asegúrate de que el archivo esté al nivel de index.html
+    .then(response => response.json())
+    .then(data => {
+        const nuevasTareas = data.map(tarea => ({
+            id: tarea.id,
+            descripcion: tarea.text,
+            completada: tarea.check,
+        }));
+
+        nuevasTareas.forEach(nuevaTarea => {
+            if (!tareas.some(tarea => tarea.id === nuevaTarea.id)) {
+                tareas.push(nuevaTarea);
+            }
+        });
+
+        guardarTareas();
+        actualizarListaDeTareas();
+    })
+    .catch(error => console.error('Error al cargar tareas desde el JSON:', error));
 
 //FUNCION PARA AGREGAR NUEVAS TAREAS
 function agregarTarea() {
@@ -160,7 +176,7 @@ function borrarTarea(id) {
         guardarTareas();
         actualizarListaDeTareas();
         swalWithBootstrapButtons.fire({
-        background:"linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 100%)",
+        background:"linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(13,193,0,1) 100%)",
         title: "Borrado!",
         text: "Su tarea fue borrada!",
         icon: "success"
@@ -222,6 +238,7 @@ function borrarTodo() {
 //FUNCION PARA GUARDAR EN LOCAL STORAGE
 function guardarTareas() {
     localStorage.setItem("tareas", JSON.stringify(tareas));
+    localStorage.setItem("contador", contador);
 }
 
 //COMANDO PARA AGREGAR UNA TAREA AL PRESIONAR ENTER
