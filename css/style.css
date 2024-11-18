@@ -175,6 +175,7 @@ input[type="checkbox"]{
 div .swal2-popup button{
     margin: 10px;
 }
+
 @media (max-width: 260px) {
     html {
         font-size: 14px;
