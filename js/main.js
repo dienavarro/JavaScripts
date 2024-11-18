@@ -1,7 +1,7 @@
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 let contador = parseInt(localStorage.getItem("contador")) || 1;
 
-fetch('./tareasApi.json') // Asegúrate de que el archivo esté al nivel de index.html
+fetch('./tareasApi.json')
     .then(response => response.json())
     .then(data => {
         const nuevasTareas = data.map(tarea => ({
