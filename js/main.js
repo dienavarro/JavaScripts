@@ -152,7 +152,7 @@ function borrarTarea(id) {
         });
 
     swalWithBootstrapButtons.fire({
-        title: "Estas seguro?",
+        title: "¿Estas seguro?",
         text: "Si borras esta tarea no la podras recuperar",
         icon: "warning",
         showCancelButton: true,
@@ -174,7 +174,7 @@ function borrarTarea(id) {
     ) {
         swalWithBootstrapButtons.fire({
         title: "Cancelled",
-        text: "Your imaginary file is safe :)",
+        text: "Su archivo NO fue borrado",
         icon: "error"
         });
     }
@@ -191,8 +191,8 @@ function borrarTodo() {
         buttonsStyling: false
       });
       swalWithBootstrapButtons.fire({
-        title: "Estas seguro?",
-        text: "Si borras esta tarea no la podras recuperar",
+        title: "¿Estas seguro?",
+        text: "Si decides borrar todo, tambien se eliminara del localstorage ¿Seguro quieres eso?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "si, borrala!",
